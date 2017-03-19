@@ -1,0 +1,68 @@
+//
+//  PrefixHeader.pch
+//  JianGou
+//
+//  Created by 时空矩人 on 2017/3/9.
+//  Copyright © 2017年 时空矩人. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+//==================== 日志输出 ===================
+#ifdef DEBUG         // 开发阶段-DEBUG阶段:使用Log
+#define TKLog(...) NSLog(__VA_ARGS__)
+#else                // 发布阶段-上线阶段:移除Log
+#define TKGLog(...)
+#endif
+
+// 方法输出
+#define TKLogFunc TKLog(@"%s", __func__);
+
+
+//=================== APP相关 ===================
+//当前版本
+#define APP_VERSION  [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
+
+//=================== 颜色相关 ==================
+#define TKARGBColor(a, r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+#define TKColor(r, g, b) TKARGBColor(255, (r), (g), (b))
+#define TKGrayColor(v) TKColor((v), (v), (v))
+#define TKCommonBgColor TKGrayColor(215)
+
+//随机颜色
+#define TKRandomColor TKColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
+
+
+//=================== 第三方相关 ===============
+/** Masonry */
+// 定义这个常量，就可以不用在开发过程中使用"mas_"前缀。
+#define MAS_SHORTHAND
+
+// 定义这个常量，就可以让Masonry帮我们自动把基础数据类型的数据，自动装箱为对象类型。
+#define MAS_SHORTHAND_GLOBALS
+
+
+//=================== 设备相关 ===================
+//屏幕高度
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+
+//屏幕高度
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+//屏幕尺寸
+#define IPHONE4 ((SCREEN_WIDTH == 320) && (SCREEN_HEIGHT == 480))
+
+#define IPHONE5 ((SCREEN_WIDTH == 320) && (SCREEN_HEIGHT == 568))
+
+#define IPHONE6 ((SCREEN_WIDTH == 375) && (SCREEN_HEIGHT == 667))
+
+#define IPHONE6P ((SCREEN_WIDTH == 414) && (SCREEN_HEIGHT == 736))
+
+
+//==================== 其他 =====================
+
+
+#endif /* PrefixHeader_pch */
